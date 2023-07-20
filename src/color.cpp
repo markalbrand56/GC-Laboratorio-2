@@ -21,10 +21,10 @@ std::ostream &operator<<(std::ostream &os, const Color &color) {
     return os;
 }
 
-Color Color::operator+(const Color &other) {
-    return Color(clamp(r + other.r), clamp(g + other.g), clamp(b + other.b));
+Color Color::operator+(const Color &other) const {
+    return {clamp(r + other.r), clamp(g + other.g), clamp(b + other.b)};
 }
 
-Color Color::operator*(float value) {
-    return Color(clamp(r * value), clamp(g * value), clamp(b * value));
+Color Color::operator*(float value) const {
+    return {clamp(r * value), clamp(g * value), clamp(b * value)};
 }

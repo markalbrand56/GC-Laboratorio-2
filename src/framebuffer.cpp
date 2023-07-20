@@ -2,6 +2,8 @@
 #include "framebuffer.h"
 
 const int FRAMEBUFFER_SIZE = SCREEN_WIDTH * SCREEN_HEIGHT;
+
+// Puntos de prueba
 int x = 10;
 int y = 10;
 
@@ -59,9 +61,6 @@ void renderBuffer(SDL_Renderer* renderer) {
 void render(SDL_Renderer* renderer) {
     // Clear the framebuffer
     clear();
-
-    // Draw a point
-    point({ x++, y++ });
 
     // Render the framebuffer to the screen
     renderBuffer(renderer);

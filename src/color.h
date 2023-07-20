@@ -9,11 +9,11 @@ public:
     Color() : r(0), g(0), b(0) {}
     Color(unsigned char red, unsigned char green, unsigned char blue);
 
-    unsigned char clamp(unsigned char value);
+    static unsigned char clamp(unsigned char value);
 
     friend std::ostream& operator<<(std::ostream& os, const Color& color);
 
-    Color operator+(const Color& other);
+    Color operator+(const Color& other) const;
 
-    Color operator*(float value);
+    Color operator*(float value) const;
 };

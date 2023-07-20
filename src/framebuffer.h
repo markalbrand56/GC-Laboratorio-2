@@ -13,12 +13,6 @@ struct Vertex2 {
     int x, y;
 };
 
-struct Polygon {
-    std::vector<Vertex2> vertices;
-    Color fillColor;
-    Color borderColor;
-};
-
 // Variables globales del framebuffer
 extern Color clearColor;
 extern Color currentColor;
