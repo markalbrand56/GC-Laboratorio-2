@@ -2,13 +2,13 @@
 #include <SDL.h>
 #include "framebuffer.h"
 
-#define SCREEN_WIDTH 800
-#define SCREEN_HEIGHT 600
+#define WINDOW_WIDTH 800
+#define WINDOW_HEIGHT 800
 
 int main(int argc, char* args[]) {
     SDL_Init(SDL_INIT_EVERYTHING);
 
-    SDL_Window* window = SDL_CreateWindow("life", 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, 0);
+    SDL_Window* window = SDL_CreateWindow("life", 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, 0);
 
     SDL_Renderer* renderer = SDL_CreateRenderer(
             window,
