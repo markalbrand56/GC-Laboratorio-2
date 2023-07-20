@@ -54,9 +54,6 @@ void renderBuffer(SDL_Renderer* renderer) {
     SDL_DestroyTexture(texture);
 }
 
-int x = 0;
-int y = 0;
-
 void render(SDL_Renderer* renderer) {
     // Create a copy of the current framebuffer to calculate the next state
     std::vector<Color> currentFramebuffer(framebuffer, framebuffer + FRAMEBUFFER_SIZE);
@@ -64,7 +61,44 @@ void render(SDL_Renderer* renderer) {
     // Clear the framebuffer
     clear();
 
-    point({x++,y++});
+    // Apply Conway's Game of Life rules to update the next state of the cells
+    for (int y = 0; y < FRAMEBUFFER_HEIGHT; ++y) {
+        for (int x = 0; x < FRAMEBUFFER_WIDTH; ++x) {
+            int liveNeighbors = 0;
+
+            // Count the number of live neighbors around the current cell
+            for (int i = -1; i <= 1; ++i) {
+                for (int j = -1; j <= 1; ++j) {
+                    if (i == 0 && j == 0) continue; // Skip the current cell
+                    int neighborX = x + i;
+                    int neighborY = y + j;
+
+                    // Check if the neighbor is within the bounds of the framebuffer
+                    if (neighborX >= 0 && neighborX < FRAMEBUFFER_WIDTH && neighborY >= 0 && neighborY < FRAMEBUFFER_HEIGHT) {
+                        if (currentFramebuffer[neighborY * FRAMEBUFFER_WIDTH + neighborX].r == 255) {
+                            liveNeighbors++;
+                        }
+                    }
+                }
+            }
+
+            // Apply the Game of Life rules
+            if (currentFramebuffer[y * FRAMEBUFFER_WIDTH + x].r == 255) { // Current cell is alive
+                if (liveNeighbors < 2 || liveNeighbors > 3) {
+                    // Underpopulation or Overpopulation, the cell dies
+                    point({x, y}); // Set the current cell to dead (black)
+                } else {
+                    // Survival, the cell remains alive
+                    point({x, y}); // Set the current cell to alive (white)
+                }
+            } else { // Current cell is dead
+                if (liveNeighbors == 3) {
+                    // Reproduction, a new cell is born
+                    point({x, y}); // Set the current cell to alive (white)
+                }
+            }
+        }
+    }
 
     // Render the framebuffer to the screen
     renderBuffer(renderer);

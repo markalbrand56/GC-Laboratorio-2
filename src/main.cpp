@@ -5,6 +5,18 @@
 #define WINDOW_WIDTH 800
 #define WINDOW_HEIGHT 800
 
+void defineInitialPattern() {
+    // Clear the framebuffer first
+    clear();
+
+    // Define the glider pattern
+    point({10, 10});
+    point({11, 11});
+    point({9, 12});
+    point({10, 12});
+    point({11, 12});
+}
+
 int main(int argc, char* args[]) {
     SDL_Init(SDL_INIT_EVERYTHING);
 
@@ -18,6 +30,9 @@ int main(int argc, char* args[]) {
 
     bool running = true;
     SDL_Event event;
+
+    // Define the initial pattern
+    defineInitialPattern();
 
     while (running) {
         while (SDL_PollEvent(&event)) {

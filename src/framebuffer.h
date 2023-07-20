@@ -11,8 +11,8 @@ struct Color {
 };
 
 // Tamaño de la pantalla
-const int FRAMEBUFFER_WIDTH = 80;
-const int FRAMEBUFFER_HEIGHT = 80;
+const int FRAMEBUFFER_WIDTH = 100;
+const int FRAMEBUFFER_HEIGHT = 100;
 
 // Definiciones de color y estructuras
 struct Vertex2 {
