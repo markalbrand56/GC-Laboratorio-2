@@ -64,14 +64,11 @@ void applyRules() {
             for (int i = -1; i <= 1; i++) {
                 for (int j = -1; j <= 1; j++) {
                     if (!(i == 0 && j == 0)) {
-                        int neighborX = x + i;
-                        int neighborY = y + j;
+                        int neighborX = (x + i + GRID_WIDTH) % GRID_WIDTH;
+                        int neighborY = (y + j + GRID_HEIGHT) % GRID_HEIGHT;
 
-                        if (neighborX >= 0 && neighborX < GRID_WIDTH &&
-                            neighborY >= 0 && neighborY < GRID_HEIGHT) {
-                            if (grid[neighborY][neighborX]) {
-                                aliveNeighbors++;
-                            }
+                        if (grid[neighborY][neighborX]) {
+                            aliveNeighbors++;
                         }
                     }
                 }
