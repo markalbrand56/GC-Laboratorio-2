@@ -9,6 +9,6 @@ set(SDL2_LIB_DIR C:/Users/marka/Coding/Recursos/Librerías/SDL2/lib/x64)
 include_directories(${SDL2_INCLUDE_DIR})
 link_directories(${SDL2_LIB_DIR})
 
-add_executable(Laboratorio_2 src/main.cpp src/framebuffer.h src/framebuffer.cpp)
+add_executable(Laboratorio_2 src/main.cpp)
 
 target_link_libraries(${PROJECT_NAME} SDL2main SDL2)
