@@ -97,16 +97,6 @@ void applyRules() {
     }
 }
 
-// Define the initial pattern (Glider)
-void setInitialPattern() {
-    // Glider pattern
-    setCellAlive(1, 0);
-    setCellAlive(2, 1);
-    setCellAlive(0, 2);
-    setCellAlive(1, 2);
-    setCellAlive(2, 2);
-}
-
 void renderBuffer(SDL_Renderer* renderer) {
     // Create a texture
     SDL_Texture* texture = SDL_CreateTexture(
@@ -157,6 +147,241 @@ void render(SDL_Renderer* renderer) {
 
     // Render the framebuffer to the screen
     renderBuffer(renderer);
+}
+
+// Patterns
+
+void placeGlider(int startX, int startY) {
+    setCellAlive(startX + 1, startY);
+    setCellAlive(startX + 2, startY + 1);
+    setCellAlive(startX, startY + 2);
+    setCellAlive(startX + 1, startY + 2);
+    setCellAlive(startX + 2, startY + 2);
+}
+
+void placeBlock(int startX, int startY) {
+    setCellAlive(startX, startY);
+    setCellAlive(startX + 1, startY);
+    setCellAlive(startX, startY + 1);
+    setCellAlive(startX + 1, startY + 1);
+}
+
+void placeBeehive(int startX, int startY) {
+    setCellAlive(startX + 1, startY);
+    setCellAlive(startX + 2, startY);
+    setCellAlive(startX, startY + 1);
+    setCellAlive(startX + 3, startY + 1);
+    setCellAlive(startX + 1, startY + 2);
+    setCellAlive(startX + 2, startY + 2);
+}
+
+void placeLoaf(int startX, int startY) {
+    setCellAlive(startX + 1, startY);
+    setCellAlive(startX + 2, startY);
+    setCellAlive(startX, startY + 1);
+    setCellAlive(startX + 3, startY + 1);
+    setCellAlive(startX + 1, startY + 2);
+    setCellAlive(startX + 3, startY + 2);
+    setCellAlive(startX + 2, startY + 3);
+}
+
+void placeBlinker(int startX, int startY) {
+    setCellAlive(startX, startY);
+    setCellAlive(startX + 1, startY);
+    setCellAlive(startX + 2, startY);
+}
+
+// Function to place a toad at a specific position in the grid
+void placeToad(int startX, int startY) {
+    setCellAlive(startX + 1, startY);
+    setCellAlive(startX + 2, startY);
+    setCellAlive(startX + 3, startY);
+    setCellAlive(startX, startY + 1);
+    setCellAlive(startX + 1, startY + 1);
+    setCellAlive(startX + 2, startY + 1);
+}
+
+// Function to place a beacon at a specific position in the grid
+void placeBeacon(int startX, int startY) {
+    setCellAlive(startX, startY);
+    setCellAlive(startX + 1, startY);
+    setCellAlive(startX, startY + 1);
+    setCellAlive(startX + 3, startY + 2);
+    setCellAlive(startX + 2, startY + 3);
+    setCellAlive(startX + 3, startY + 3);
+}
+
+// Function to place a pulsar at a specific position in the grid
+void placePulsar(int startX, int startY) {
+    // Upper-left quadrant
+    setCellAlive(startX + 2, startY);
+    setCellAlive(startX + 3, startY);
+    setCellAlive(startX + 4, startY);
+    setCellAlive(startX, startY + 2);
+    setCellAlive(startX + 5, startY + 2);
+    setCellAlive(startX, startY + 3);
+    setCellAlive(startX + 5, startY + 3);
+    setCellAlive(startX, startY + 4);
+    setCellAlive(startX + 5, startY + 4);
+    setCellAlive(startX + 2, startY + 5);
+    setCellAlive(startX + 3, startY + 5);
+    setCellAlive(startX + 4, startY + 5);
+
+    // Upper-right quadrant
+    setCellAlive(startX + 9, startY);
+    setCellAlive(startX + 10, startY);
+    setCellAlive(startX + 11, startY);
+    setCellAlive(startX + 7, startY + 2);
+    setCellAlive(startX + 12, startY + 2);
+    setCellAlive(startX + 7, startY + 3);
+    setCellAlive(startX + 12, startY + 3);
+    setCellAlive(startX + 7, startY + 4);
+    setCellAlive(startX + 12, startY + 4);
+    setCellAlive(startX + 9, startY + 5);
+    setCellAlive(startX + 10, startY + 5);
+    setCellAlive(startX + 11, startY + 5);
+
+    // Lower-left quadrant
+    setCellAlive(startX + 2, startY + 7);
+    setCellAlive(startX + 3, startY + 7);
+    setCellAlive(startX + 4, startY + 7);
+    setCellAlive(startX, startY + 9);
+    setCellAlive(startX + 5, startY + 9);
+    setCellAlive(startX, startY + 10);
+    setCellAlive(startX + 5, startY + 10);
+    setCellAlive(startX, startY + 11);
+    setCellAlive(startX + 5, startY + 11);
+    setCellAlive(startX + 2, startY + 12);
+    setCellAlive(startX + 3, startY + 12);
+    setCellAlive(startX + 4, startY + 12);
+
+    // Lower-right quadrant
+    setCellAlive(startX + 9, startY + 7);
+    setCellAlive(startX + 10, startY + 7);
+    setCellAlive(startX + 11, startY + 7);
+    setCellAlive(startX + 7, startY + 9);
+    setCellAlive(startX + 12, startY + 9);
+    setCellAlive(startX + 7, startY + 10);
+    setCellAlive(startX + 12, startY + 10);
+    setCellAlive(startX + 7, startY + 11);
+    setCellAlive(startX + 12, startY + 11);
+    setCellAlive(startX + 9, startY + 12);
+    setCellAlive(startX + 10, startY + 12);
+    setCellAlive(startX + 11, startY + 12);
+}
+
+// Function to place a penthadecathlon at a specific position in the grid
+void placePentadecathlon(int startX, int startY) {
+    setCellAlive(startX + 1, startY);
+    setCellAlive(startX + 2, startY);
+    setCellAlive(startX + 4, startY);
+    setCellAlive(startX + 5, startY);
+    setCellAlive(startX + 6, startY);
+    setCellAlive(startX + 7, startY);
+    setCellAlive(startX + 9, startY);
+    setCellAlive(startX + 10, startY);
+    setCellAlive(startX + 11, startY);
+    setCellAlive(startX + 12, startY);
+    setCellAlive(startX + 13, startY);
+    setCellAlive(startX + 14, startY);
+    setCellAlive(startX + 15, startY);
+    setCellAlive(startX + 16, startY);
+    setCellAlive(startX + 17, startY);
+}
+
+// Function to place a pulsar2 at a specific position in the grid
+void placePulsar2(int startX, int startY) {
+    setCellAlive(startX + 2, startY);
+    setCellAlive(startX + 3, startY);
+    setCellAlive(startX + 4, startY);
+    setCellAlive(startX + 8, startY);
+    setCellAlive(startX + 9, startY);
+    setCellAlive(startX + 10, startY);
+
+    setCellAlive(startX, startY + 2);
+    setCellAlive(startX + 5, startY + 2);
+    setCellAlive(startX + 7, startY + 2);
+    setCellAlive(startX + 12, startY + 2);
+
+    setCellAlive(startX, startY + 3);
+    setCellAlive(startX + 5, startY + 3);
+    setCellAlive(startX + 7, startY + 3);
+    setCellAlive(startX + 12, startY + 3);
+
+    setCellAlive(startX + 2, startY + 4);
+    setCellAlive(startX + 3, startY + 4);
+    setCellAlive(startX + 4, startY + 4);
+    setCellAlive(startX + 8, startY + 4);
+    setCellAlive(startX + 9, startY + 4);
+    setCellAlive(startX + 10, startY + 4);
+
+    setCellAlive(startX + 2, startY + 5);
+    setCellAlive(startX + 3, startY + 5);
+    setCellAlive(startX + 4, startY + 5);
+    setCellAlive(startX + 8, startY + 5);
+    setCellAlive(startX + 9, startY + 5);
+    setCellAlive(startX + 10, startY + 5);
+
+    setCellAlive(startX, startY + 7);
+    setCellAlive(startX + 5, startY + 7);
+    setCellAlive(startX + 7, startY + 7);
+    setCellAlive(startX + 12, startY + 7);
+
+    setCellAlive(startX, startY + 8);
+    setCellAlive(startX + 5, startY + 8);
+    setCellAlive(startX + 7, startY + 8);
+    setCellAlive(startX + 12, startY + 8);
+
+    setCellAlive(startX + 2, startY + 9);
+    setCellAlive(startX + 3, startY + 9);
+    setCellAlive(startX + 4, startY + 9);
+    setCellAlive(startX + 8, startY + 9);
+    setCellAlive(startX + 9, startY + 9);
+    setCellAlive(startX + 10, startY + 9);
+
+    setCellAlive(startX + 2, startY + 11);
+    setCellAlive(startX + 3, startY + 11);
+    setCellAlive(startX + 4, startY + 11);
+    setCellAlive(startX + 8, startY + 11);
+    setCellAlive(startX + 9, startY + 11);
+    setCellAlive(startX + 10, startY + 11);
+}
+
+// Function to place a lightweight spaceship at a specific position in the grid
+void placeLWSS(int startX, int startY) {
+    setCellAlive(startX + 1, startY);
+    setCellAlive(startX + 4, startY);
+
+    setCellAlive(startX, startY + 1);
+    setCellAlive(startX + 4, startY + 1);
+
+    setCellAlive(startX + 4, startY + 2);
+
+    setCellAlive(startX, startY + 3);
+    setCellAlive(startX + 1, startY + 3);
+    setCellAlive(startX + 2, startY + 3);
+    setCellAlive(startX + 3, startY + 3);
+}
+
+// Function to place a heavyweight spaceship at a specific position in the grid
+void placeHWSS(int startX, int startY) {
+    setCellAlive(startX + 1, startY);
+    setCellAlive(startX + 5, startY);
+
+    setCellAlive(startX + 6, startY + 1);
+    setCellAlive(startX + 6, startY + 2);
+    setCellAlive(startX, startY + 3);
+    setCellAlive(startX + 6, startY + 3);
+    setCellAlive(startX + 3, startY + 4);
+    setCellAlive(startX + 4, startY + 4);
+    setCellAlive(startX + 5, startY + 4);
+    setCellAlive(startX + 6, startY + 4);
+}
+
+
+// Define the initial pattern (Glider)
+void setInitialPattern() {
+
 }
 
 int main(int argc, char** argv) {
