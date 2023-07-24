@@ -1,11 +1,12 @@
 #include <SDL.h>
+#include <ctime>
 
 // Define the size of the framebuffer
-const int FRAMEBUFFER_WIDTH = 100;
-const int FRAMEBUFFER_HEIGHT = 100;
+const int FRAMEBUFFER_WIDTH = 150;
+const int FRAMEBUFFER_HEIGHT = 150;
 const int FRAMEBUFFER_SIZE = FRAMEBUFFER_WIDTH * FRAMEBUFFER_HEIGHT;
-const int WINDOW_WIDTH = 800;
-const int WINDOW_HEIGHT = 800;
+const int WINDOW_WIDTH = 1000;
+const int WINDOW_HEIGHT = 1000;
 
 // Define a Color struct to hold the RGB values of a pixel
 struct Color {
@@ -39,8 +40,8 @@ void point(int x, int y) {
 }
 
 // Define the grid size for the Game of Life
-const int GRID_WIDTH = 100;
-const int GRID_HEIGHT = 100;
+const int GRID_WIDTH = 150;
+const int GRID_HEIGHT = 150;
 
 // Declare the grid as a global variable
 bool grid[GRID_HEIGHT][GRID_WIDTH] = {false}; // Initially all cells are dead
@@ -378,10 +379,89 @@ void placeHWSS(int startX, int startY) {
     setCellAlive(startX + 6, startY + 4);
 }
 
+// Function to place a random number of static organisms at random positions in the grid
+void placeRandomStaticOrganisms(int numOrganisms) {
+    // Seed the random number generator with the current time
+    std::srand(static_cast<unsigned int>(std::time(0)));
+
+    for (int i = 0; i < numOrganisms; i++) {
+        int startX = std::rand() % GRID_WIDTH;  // Generate a random X coordinate within the grid width
+        int startY = std::rand() % GRID_HEIGHT; // Generate a random Y coordinate within the grid height
+
+        // Choose a random organism to place
+        int organismType = std::rand() % 4; // Assuming there are four different organism types (modify as needed)
+
+        switch (organismType) {
+            case 0:
+                placeBlock(startX, startY);
+                break;
+            case 1:
+                placeBeehive(startX, startY);
+                break;
+            case 2:
+                placeLoaf(startX, startY);
+                break;
+            case 3:
+                placeToad(startX, startY);
+                break;
+                // Add more cases for other organism types as needed
+                // case 4:
+                //     placeAnotherOrganism(startX, startY);
+                //     break;
+                // ...
+        }
+    }
+}
+
 
 // Define the initial pattern (Glider)
 void setInitialPattern() {
+    // Oscillators
+    placeBlinker(10, 10);
+    placeToad(20, 10);
+    placeBeacon(30, 50);
+    placePulsar(40, 10);
+    placePentadecathlon(50, 10);
+    placeBlinker(60, 70);
+    placeToad(70, 10);
+    placeBeacon(80, 100);
+    placePulsar(90, 120);
+    placePentadecathlon(100, 10);
+    placeBlinker(110, 55);
+    placeToad(120, 60);
+    placeBeacon(130, 30);
+    placePulsar(140, 95);
+    placePentadecathlon(150, 130);
+    placeBlinker(140, 140);
+    placeToad(130, 130);
+    placeBeacon(120, 120);
+    placePulsar(110, 110);
 
+    // Spaceships
+    placeGlider(10, 50);
+    placeLWSS(20, 20);
+    placeHWSS(30, 80);
+    placeGlider(40, 20);
+    placeLWSS(50, 120);
+    placeHWSS(60, 60);
+    placeGlider(70, 70);
+    placeLWSS(80, 80);
+    placeHWSS(90, 90);
+    placeGlider(100, 100);
+    placeLWSS(110, 110);
+    placeHWSS(120, 120);
+    placeGlider(130, 130);
+    placeLWSS(140, 140);
+    placeHWSS(150, 150);
+    placeGlider(10, 150);
+    placeLWSS(20, 140);
+    placeHWSS(30, 130);
+    placeGlider(40, 120);
+    placeLWSS(50, 110);
+    placeHWSS(60, 100);
+
+    // Randomly place cells
+    placeRandomStaticOrganisms(50);
 }
 
 int main(int argc, char** argv) {
