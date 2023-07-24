@@ -17,3 +17,5 @@
 - Heavyweight spaceship
 
 ### Ejecución
+
+![Ejecución](https://github.com/markalbrand56/GC-Laboratorio-2/blob/master/2023-07-24-17-39-22.gif)
